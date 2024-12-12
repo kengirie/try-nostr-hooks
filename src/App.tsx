@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { useNdk } from 'nostr-hooks';
-import UserNotes from './UserNotes';
+import PublicChannel from './PublicChannel';
 import { nip19 } from "nostr-tools";
 import { getPublicKey } from 'nostr-tools/pure';
 
@@ -12,6 +10,10 @@ import { NDKEvent, NDKNip07Signer, NDKPrivateKeySigner } from '@nostr-dev-kit/nd
 import { useLogin } from 'nostr-hooks';
 import { useActiveUser } from 'nostr-hooks';
 import ActiveUser from './ActiveUser';
+
+     const firstndk = new NDK({
+       explicitRelayUrls: ["wss://nos.lol"],
+     });
 
 
 function App() {
@@ -56,7 +58,7 @@ function App() {
        <button onClick={() => loginWithExtension()}>Login with Extension</button>
       <button onClick={() => logout()}>Logout</button>
       <ActiveUser></ActiveUser>
-      <UserNotes pubkey={pubkey}></UserNotes>
+      <PublicChannel></PublicChannel>
           <input type="text" value={content} onChange={(e) => setContent(e.target.value)} />
 
       <button onClick={() => handlePublish()}>Publish Note</button>

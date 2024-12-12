@@ -1,22 +1,22 @@
 import { useEffect } from 'react';
 import { useSubscription } from 'nostr-hooks';
 
-const UserNotes = ({ pubkey }: { pubkey: string | undefined }) => {
-  const subId = `${pubkey}-notes`;
+const PublicChat = ({ id }: { id: string | undefined }) => {
+  const subId = `${id}-notes`;
 
   const { events, isLoading, createSubscription, removeSubscription } = useSubscription(subId);
 
   useEffect(() => {
-    if (!pubkey) return;
+    if (!id) return;
 
-    const filters = [{ authors: [pubkey], kinds: [1], limit: 40 }];
+    const filters = [{ kinds: [42], limit: 10, '#e': [id] }];
 
     createSubscription(filters);
 
     return () => {
       removeSubscription();
     };
-  }, [pubkey, createSubscription, removeSubscription]);
+  }, [id,createSubscription, removeSubscription]);
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -34,4 +34,4 @@ const UserNotes = ({ pubkey }: { pubkey: string | undefined }) => {
   );
 };
 
-export default UserNotes;
+export default PublicChat;
