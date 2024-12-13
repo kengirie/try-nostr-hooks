@@ -1,32 +1,27 @@
-import { useState, useEffect } from 'react'
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css'
 import { useNdk } from 'nostr-hooks';
 import PublicChannel from './PublicChannel';
 import PublicChat from './PublicChat';
-
-import NDK from "@nostr-dev-kit/ndk";
+import Login from './Login';
 import About from './About';
 import Header from './Header';
-
-     const firstndk = new NDK({
-       explicitRelayUrls: ["wss://nos.lol"],
-     });
 
 
 function App() {
 
   const { initNdk, ndk } = useNdk();
   useEffect(() => {
-    initNdk(
-      firstndk);
+    initNdk({
+       explicitRelayUrls: ["wss://nos.lol"],
+     });
   }, [initNdk]);
 
   useEffect(() => {
     ndk?.connect(); // This will also reconnect when the instance changes
   }, [ndk]);
-
+  console.log(ndk);
   return (
     <>
       <Router>
@@ -35,6 +30,7 @@ function App() {
           <Route path="/channel" element={<PublicChannel></PublicChannel>} />
           <Route path="/about" element={<About />} />
           <Route path="/channel/:id" element={<PublicChat />} />
+          <Route path="/login" element={<Login />} />
       </Routes>
       </Router>
     </>

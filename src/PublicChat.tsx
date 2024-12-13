@@ -40,18 +40,21 @@ const PublicChat = () => {
 
   if (!events || !reacts) return <p>No events found</p>;
 
+  events.map((event) => {
+    console.log(event);
+  });
   return (
     <ul>
       {reacts.map((react) => (
         <li key={react.id}>
           <h3>{react.id}</h3>
-          <p>{react.tags}</p>
           <p>{react.content}</p>
+          <p>{react.pubkey}</p>
         </li>))}
       {events.map((event) => (
         <li key={event.id}>
           <h3>{event.id}</h3>
-          <p>{event.tags}</p>
+          <p>{event.pubkey}</p>
           <p>{event.content}</p>
         </li>
       ))}

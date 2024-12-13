@@ -8,7 +8,7 @@ const PublicChannel = () => {
   const { events, isLoading, createSubscription, removeSubscription } = useSubscription('32');
 
   useEffect(() => {
-    console.log();
+    console.log('32');
 
     const filters = [{ kinds: [40], limit: 10 }];
 
@@ -29,14 +29,27 @@ const PublicChannel = () => {
 
   return (
     <ul>
-      {events.map((event) => (
-        <li key={event.id}>
-          <h3>{event.id}</h3>
-          <p>{event.tags}</p>
-          <p>{event.content}</p>
-          <Link to={`/channel/${event.id}`}>Chat</Link>
-        </li>))}
-      <Link to="/">Home</Link>
+    {events.map((event) => {
+        let content;
+        try {
+          content = JSON.parse(event.content);
+        } catch (e) {
+          console.error('Failed to parse event content', e);
+          content = { name: 'Unknown', about: 'Unknown' };
+        }
+
+        return (
+          <li key={event.id}>
+            <h3>{event.id}</h3>
+            <p>Name: {content.name}</p>
+            <p>About: {content.about}</p>
+            <Link to={`/channel/${event.id}`}>Chat</Link>
+          </li>
+        );
+      })}
+      <li>
+        <Link to="/">Home</Link>
+      </li>
     </ul>
   );
 };
