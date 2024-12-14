@@ -11,7 +11,6 @@ const Publish = () => {
     const event = new NDKEvent(ndk);
     event.content = content;
     event.kind = 1;
-
     event.publish();
   };
 

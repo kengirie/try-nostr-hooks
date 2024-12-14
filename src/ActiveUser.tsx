@@ -1,6 +1,6 @@
 import { useActiveUser } from 'nostr-hooks';
 import { useProfile } from 'nostr-hooks';
-
+import './ActiveUser.css';
 const ActiveUser = () => {
   const { activeUser } = useActiveUser();
   const { profile } = useProfile({ pubkey: activeUser?.pubkey });
@@ -10,10 +10,10 @@ const ActiveUser = () => {
   if (activeUser === null) return <p>Not logged in</p>;
 
   return (
-    <div>
+    <>
+      {profile?.image && <img src={profile.image} alt="Profile" className="profile-image"/>}
       <p>{profile?.displayName}</p>
-      <p>{profile?.about}</p>
-    </div>
+    </>
   );
 };
 export default ActiveUser;

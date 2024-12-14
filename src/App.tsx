@@ -7,6 +7,7 @@ import PublicChat from './PublicChat';
 import Login from './Login';
 import About from './About';
 import Header from './Header';
+import Home from './Home';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/channel" element={<PublicChannel></PublicChannel>} />
           <Route path="/about" element={<About />} />
           <Route path="/channel/:id" element={<PublicChat />} />

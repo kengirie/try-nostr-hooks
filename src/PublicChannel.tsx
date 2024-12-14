@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSubscription } from 'nostr-hooks';
 import { Link,} from 'react-router-dom';
+import CreatePublicChannel from './CreatePublicChannel';
 
 const PublicChannel = () => {
   //const subId = `${pubkey}-notes`;
@@ -29,6 +30,7 @@ const PublicChannel = () => {
 
   return (
     <ul>
+      <CreatePublicChannel />
     {events.map((event) => {
         let content;
         try {
@@ -47,9 +49,6 @@ const PublicChannel = () => {
           </li>
         );
       })}
-      <li>
-        <Link to="/">Home</Link>
-      </li>
     </ul>
   );
 };

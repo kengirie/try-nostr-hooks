@@ -1,13 +1,18 @@
 import { useEffect } from 'react';
 import { useSubscription } from 'nostr-hooks';
 import { useParams } from 'react-router-dom';
+import PublishReactionToChannel from './PublishReactionToChannel';
+import PublishChatComment from './PublishChatComment';
 
 const PublicChat = () => {
   const { id } = useParams<{ id: string }>();
-  const subId = `${id}-notes`;
-  const subId2 = `${id}-likes`;
+  const subId = `${id}-chats`;
+  const subIdLikes = `${id}-likes`;
+  const subIdAbouts = `${id}-abouts`;
 
-  const { events: reacts, isLoading: isReactLoading, createSubscription: createReactSubscription, removeSubscription: removeReactSubscription } = useSubscription(subId2);
+  const { events: reacts, isLoading: isReactLoading, createSubscription: createReactSubscription, removeSubscription: removeReactSubscription } = useSubscription(subIdLikes);
+
+  const { events: abouts, isLoading: isAboutLoading, createSubscription: createAboutSubscription, removeSubscription: removeAboutSubscription } = useSubscription(subIdAbouts);
 
   const { events, isLoading, createSubscription, removeSubscription } = useSubscription(subId);
 
@@ -27,7 +32,7 @@ const PublicChat = () => {
 
   useEffect(() => {
     if (!id) return;
-    const filters = [{ kinds: [7], limit: 10, '#e': [id] }];
+    const filters = [{ kinds: [7], limit: 10, '#e':[id] }];
     createReactSubscription(filters);
     return () => {
       removeReactSubscription();
@@ -35,16 +40,33 @@ const PublicChat = () => {
 
   }, [id, createReactSubscription, removeReactSubscription]);
 
+  useEffect(() => {
+    if (!id) return;
+    const filters = [{ kinds:[40], ids:[id] }];
+    createAboutSubscription(filters);
+    return () => {
+      removeAboutSubscription();
+    };
 
-  if (isLoading || isReactLoading) return <p>Loading...</p>;
+  }, [id, createAboutSubscription, removeAboutSubscription]);
 
-  if (!events || !reacts) return <p>No events found</p>;
 
-  events.map((event) => {
+  if (isLoading || isReactLoading || isAboutLoading) return <p>Loading...</p>;
+
+  if (!events || !reacts || !abouts) return <p>No events found</p>;
+
+  reacts.map((event) => {
     console.log(event);
   });
   return (
     <ul>
+      {abouts.map((about) => (
+        <li key={about.id}>
+          <h2>{about.content}</h2>
+        </li>
+      ))}
+      <PublishReactionToChannel event={abouts[0]} />
+      <PublishChatComment event={abouts[0]} />
       {reacts.map((react) => (
         <li key={react.id}>
           <h3>{react.id}</h3>
