@@ -1,19 +1,24 @@
 import { useActiveUser } from 'nostr-hooks';
 import { useProfile } from 'nostr-hooks';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import './ActiveUser.css';
 const ActiveUser = () => {
   const { activeUser } = useActiveUser();
   const { profile } = useProfile({ pubkey: activeUser?.pubkey });
 
-  if (activeUser === undefined) return <p>Loading... your account</p>;
+  if (activeUser === undefined) return <Typography>Loading... </Typography>;
 
-  if (activeUser === null) return <p>Not logged in</p>;
+  if (activeUser === null) return <Typography>Not logged in</Typography>;
 
   return (
-    <>
-      {profile?.image && <img src={profile.image} alt="Profile" className="profile-image"/>}
-      <p>{profile?.displayName}</p>
-    </>
+    <Box display="flex" alignItems="center" gap={1}>
+      {profile?.image && <Avatar src={profile.image} alt="Profile" />}
+      <Typography variant="body1" color="inherit">
+        {profile?.displayName}
+      </Typography>
+    </Box>
   );
 };
 export default ActiveUser;

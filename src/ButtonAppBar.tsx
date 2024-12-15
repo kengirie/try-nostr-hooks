@@ -6,15 +6,23 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
-import ActiveUser from './ActiveUser';
 
-export default function Header() {
+export default function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar position="static">
         <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            KeiijBan
+            News
           </Typography>
             <Button color="inherit" component={Link} to="/">
             Home
@@ -28,10 +36,8 @@ export default function Header() {
           <Button color="inherit" component={Link} to="/login">
             Login
           </Button>
-          <ActiveUser />
         </Toolbar>
       </AppBar>
-      <Toolbar />
     </Box>
   );
 }

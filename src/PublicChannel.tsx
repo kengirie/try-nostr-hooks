@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSubscription } from 'nostr-hooks';
-import { Link,} from 'react-router-dom';
+import { Link, } from 'react-router-dom';
+import { Typography, ListItem, ListItemText, Button } from '@mui/material';
 import CreatePublicChannel from './CreatePublicChannel';
 
 const PublicChannel = () => {
@@ -41,12 +42,32 @@ const PublicChannel = () => {
         }
 
         return (
-          <li key={event.id}>
-            <h3>{event.id}</h3>
-            <p>Name: {content.name}</p>
-            <p>About: {content.about}</p>
-            <Link to={`/channel/${event.id}`}>Chat</Link>
-          </li>
+            <ListItem key={event.id} alignItems="flex-start">
+              <ListItemText
+                primary={
+                  <Typography variant="h6" component="span">
+                    Name: {content.name}
+                  </Typography>
+                }
+                secondary={
+                  <>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      color="textSecondary"
+                    >
+                      ID: {event.id}
+                    </Typography>
+                    <Typography variant="body2">
+                      About: {content.about}
+                    </Typography>
+                  </>
+                }
+              />
+              <Button component={Link} to={`/channel/${event.id}`} variant="contained" color="primary">
+                Chat
+              </Button>
+            </ListItem>
         );
       })}
     </ul>

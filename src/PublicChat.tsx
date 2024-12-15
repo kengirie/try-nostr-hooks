@@ -1,8 +1,13 @@
 import { useEffect } from 'react';
 import { useSubscription } from 'nostr-hooks';
 import { useParams } from 'react-router-dom';
+import { Box, Typography, List, ListItem, ListItemText, Card, CardContent } from '@mui/material';
 import PublishReactionToChannel from './PublishReactionToChannel';
 import PublishChatComment from './PublishChatComment';
+import Reactions from './Reactions';
+import ChannelAbout from './ChannelAbout';
+import NumberOfReactions from './NumberOfReactions';
+
 
 const PublicChat = () => {
   const { id } = useParams<{ id: string }>();
@@ -55,31 +60,32 @@ const PublicChat = () => {
 
   if (!events || !reacts || !abouts) return <p>No events found</p>;
 
-  reacts.map((event) => {
-    console.log(event);
-  });
   return (
     <ul>
-      {abouts.map((about) => (
-        <li key={about.id}>
-          <h2>{about.content}</h2>
-        </li>
-      ))}
+      <ChannelAbout />
       <PublishReactionToChannel event={abouts[0]} />
       <PublishChatComment event={abouts[0]} />
-      {reacts.map((react) => (
-        <li key={react.id}>
-          <h3>{react.id}</h3>
-          <p>{react.content}</p>
-          <p>{react.pubkey}</p>
-        </li>))}
-      {events.map((event) => (
-        <li key={event.id}>
-          <h3>{event.id}</h3>
-          <p>{event.pubkey}</p>
-          <p>{event.content}</p>
-        </li>
-      ))}
+      <Reactions />
+      <NumberOfReactions />
+      <List>
+        {events.map((event) => (
+          <ListItem key={event.id} alignItems="flex-start">
+            <Card sx={{ width: '100%' }}>
+              <CardContent>
+                <Typography variant="h6" component="div">
+                  {event.content}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  ID: {event.id}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Pubkey: {event.pubkey}
+                </Typography>
+              </CardContent>
+            </Card>
+          </ListItem>
+        ))}
+      </List>
     </ul>
   );
 };

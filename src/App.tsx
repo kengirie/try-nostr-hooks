@@ -8,6 +8,7 @@ import Login from './Login';
 import About from './About';
 import Header from './Header';
 import Home from './Home';
+import ButtonAppBar from './ButtonAppBar';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/channel/:id" element={<PublicChat />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/test" element={<ButtonAppBar />} />
       </Routes>
       </Router>
     </>
