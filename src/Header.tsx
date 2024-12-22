@@ -14,7 +14,7 @@ export default function Header() {
       <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            KeiijBan
+            PetitioNstr
           </Typography>
             <Button color="inherit" component={Link} to="/">
             Home

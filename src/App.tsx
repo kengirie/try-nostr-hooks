@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Box, CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import './App.css'
 import { useNdk } from 'nostr-hooks';
 import PublicChannel from './PublicChannel';
@@ -9,6 +10,13 @@ import About from './About';
 import Header from './Header';
 import Home from './Home';
 import ButtonAppBar from './ButtonAppBar';
+import Footer from './Footer';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 
 function App() {
@@ -25,7 +33,8 @@ function App() {
   }, [ndk]);
   console.log(ndk);
   return (
-    <>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <Router>
         <Header />
         <Routes>
@@ -35,9 +44,10 @@ function App() {
           <Route path="/channel/:id" element={<PublicChat />} />
           <Route path="/login" element={<Login />} />
           <Route path="/test" element={<ButtonAppBar />} />
-      </Routes>
+        </Routes>
+         <Footer />
       </Router>
-    </>
+    </ThemeProvider>
 
   )
 }
