@@ -7,10 +7,9 @@ import PublicChannel from './PublicChannel';
 import PublicChat from './PublicChat';
 import Login from './Login';
 import About from './About';
-import Header from './Header';
+import Header from './components/Header';
 import Home from './Home';
-import ButtonAppBar from './ButtonAppBar';
-import Footer from './Footer';
+import Footer from './components/Footer';
 
 const darkTheme = createTheme({
   palette: {
@@ -33,8 +32,8 @@ function App() {
   }, [ndk]);
   console.log(ndk);
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
+    // <ThemeProvider theme={darkTheme}>
+      // <CssBaseline />
       <Router>
         <Header />
         <Routes>
@@ -43,11 +42,10 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/channel/:id" element={<PublicChat />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/test" element={<ButtonAppBar />} />
         </Routes>
-         <Footer />
+         {/* <Footer /> */}
       </Router>
-    </ThemeProvider>
+    // </ThemeProvider>
 
   )
 }

@@ -5,12 +5,14 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import './ActiveUser.css';
 const ActiveUser = () => {
-  const { activeUser } = useActiveUser();
+  const { activeUser, status } = useActiveUser();
   const { profile } = useProfile({ pubkey: activeUser?.pubkey });
 
   if (activeUser === undefined) return <Typography>Loading... </Typography>;
 
   if (activeUser === null) return <Typography>Not logged in</Typography>;
+
+  console.log(status);
 
   return (
     <Box display="flex" alignItems="center" gap={1}>

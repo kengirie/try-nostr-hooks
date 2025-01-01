@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSubscription } from 'nostr-hooks';
 import { Link, } from 'react-router-dom';
 import { Typography, ListItem, ListItemText, Button } from '@mui/material';
-import CreatePublicChannel from './CreatePublicChannel';
+import CreatePublicChannel from './components/CreatePublicChannel';
 
 const PublicChannel = () => {
   //const subId = `${pubkey}-notes`;
@@ -10,7 +10,6 @@ const PublicChannel = () => {
   const { events, isLoading, createSubscription, removeSubscription } = useSubscription('32');
 
   useEffect(() => {
-    console.log('32');
 
     const filters = [{ kinds: [40], limit: 10 }];
 
@@ -64,7 +63,7 @@ const PublicChannel = () => {
                   </>
                 }
               />
-              <Button component={Link} to={`/channel/${event.id}`} variant="contained" color="primary">
+              <Button component={Link} to={`/channel/${event.id}`} variant="contained" color="secondary">
                 Chat
               </Button>
             </ListItem>
