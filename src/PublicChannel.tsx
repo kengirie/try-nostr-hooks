@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useSubscription } from 'nostr-hooks';
 import { Link, } from 'react-router-dom';
 import { Typography, ListItem, ListItemText, Button } from '@mui/material';
-import CreatePublicChannel from './components/CreatePublicChannel';
+import { CreatePublicChannel } from './components/CreatePublicChannel';
 
-const PublicChannel = () => {
+export const PublicChannel = () => {
   //const subId = `${pubkey}-notes`;
 
   const { events, isLoading, createSubscription, removeSubscription } = useSubscription('32');
@@ -73,4 +73,3 @@ const PublicChannel = () => {
   );
 };
 
-export default PublicChannel;

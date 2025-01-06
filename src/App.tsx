@@ -3,28 +3,21 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Box, CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import './App.css'
 import { useNdk } from 'nostr-hooks';
-import PublicChannel from './PublicChannel';
-import PublicChat from './PublicChat';
-import Login from './Login';
-import About from './About';
-import Header from './components/Header';
-import Home from './Home';
-import Footer from './components/Footer';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
+import { PublicChannel } from './PublicChannel';
+import { PublicChat } from './PublicChat';
+import { Login } from './Login';
+import { About } from './About';
+import { Header } from './components/Header';
+import { Home } from './Home';
 
 
-function App() {
+export const App = () => {
 
   const { initNdk, ndk } = useNdk();
   useEffect(() => {
     initNdk({
-       explicitRelayUrls: ["wss://nos.lol"],
-     });
+      explicitRelayUrls: ["wss://nos.lol"],
+    });
   }, [initNdk]);
 
   useEffect(() => {
@@ -33,21 +26,19 @@ function App() {
   console.log(ndk);
   return (
     // <ThemeProvider theme={darkTheme}>
-      // <CssBaseline />
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/channel" element={<PublicChannel></PublicChannel>} />
-          <Route path="/about" element={<About />} />
-          <Route path="/channel/:id" element={<PublicChat />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-         {/* <Footer /> */}
-      </Router>
+    // <CssBaseline />
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/channel" element={<PublicChannel></PublicChannel>} />
+        <Route path="/about" element={<About />} />
+        <Route path="/channel/:id" element={<PublicChat />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+      {/* <Footer /> */}
+    </Router>
     // </ThemeProvider>
 
   )
-}
-
-export default App
+};

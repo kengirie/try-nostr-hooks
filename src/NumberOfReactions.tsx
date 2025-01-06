@@ -3,7 +3,7 @@ import { useSubscription } from 'nostr-hooks';
 import { useParams } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 
-const NumberOfReactions = () => {
+export const NumberOfReactions = () => {
   const { id } = useParams<{ id: string }>();
   const subIdLikes = `${id}-likes`;
 
@@ -40,5 +40,3 @@ const NumberOfReactions = () => {
 
   );
 };
-
-export default NumberOfReactions;

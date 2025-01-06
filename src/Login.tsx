@@ -1,5 +1,6 @@
 import { useLogin, useNdk } from 'nostr-hooks';
-const Login = () => {
+
+export const Login = () => {
   const { setSigner } = useNdk();
 
   const {
@@ -29,5 +30,3 @@ const Login = () => {
     </>
   );
 };
-
-export default Login;

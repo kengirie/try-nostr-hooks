@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import './ActiveUser.css';
-const ActiveUser = () => {
+export const ActiveUser = () => {
   const { activeUser, status } = useActiveUser();
   const { profile } = useProfile({ pubkey: activeUser?.pubkey });
 
@@ -23,4 +23,3 @@ const ActiveUser = () => {
     </Box>
   );
 };
-export default ActiveUser;

@@ -2,7 +2,7 @@ import { NDKEvent } from '@nostr-dev-kit/ndk';
 import { useNdk } from 'nostr-hooks';
 import { useState } from 'react';
 
-const CreatePublicChannel = () => {
+export const CreatePublicChannel = () => {
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
   const [picture, setPicture] = useState('');
@@ -41,4 +41,3 @@ const CreatePublicChannel = () => {
     </>
   );
 };
-export default CreatePublicChannel;

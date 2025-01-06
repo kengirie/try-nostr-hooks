@@ -2,7 +2,7 @@ import { NDKEvent ,NDKTag} from '@nostr-dev-kit/ndk';
 import { useNdk } from 'nostr-hooks';
 import {useState} from 'react';
 
-const PublishChatComment = ({ event }: { event: NDKEvent }) => {
+export const PublishChatComment = ({ event }: { event: NDKEvent }) => {
     const [content, setContent] = useState('');
 
   const { ndk } = useNdk();
@@ -25,4 +25,3 @@ const PublishChatComment = ({ event }: { event: NDKEvent }) => {
     </>
   );
 };
-export default PublishChatComment;

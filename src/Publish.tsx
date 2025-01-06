@@ -2,7 +2,7 @@ import { NDKEvent } from '@nostr-dev-kit/ndk';
 import { useNdk } from 'nostr-hooks';
 import { useState } from 'react';
 
-const Publish = () => {
+export const Publish = () => {
   const [content, setContent] = useState('');
 
   const { ndk } = useNdk();
@@ -22,4 +22,4 @@ const Publish = () => {
     </>
   );
 };
-export default Publish;
+

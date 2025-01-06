@@ -6,9 +6,9 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
-import ActiveUser from '../ActiveUser';
+import { ActiveUser } from '../ActiveUser';
 
-export default function Header() {
+export const Header = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -16,7 +16,7 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Test Application
           </Typography>
-            <Button color="inherit" component={Link} to="/">
+          <Button color="inherit" component={Link} to="/">
             Home
           </Button>
           <Button color="inherit" component={Link} to="/about">
@@ -34,4 +34,4 @@ export default function Header() {
       <Toolbar />
     </Box>
   );
-}
+};

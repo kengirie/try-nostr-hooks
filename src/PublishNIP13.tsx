@@ -3,7 +3,7 @@ import { useNdk, useActiveUser } from 'nostr-hooks';
 import { useState } from 'react';
 import { minePow } from 'nostr-tools/nip13';
 
-const PublishNIP13 = () => {
+export const PublishNIP13 = () => {
   const [content, setContent] = useState('');
   const { ndk } = useNdk();
     const { activeUser } = useActiveUser();
@@ -40,4 +40,3 @@ const PublishNIP13 = () => {
     </>
   );
 };
-export default PublishNIP13;

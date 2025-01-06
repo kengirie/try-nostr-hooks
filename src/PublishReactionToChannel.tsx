@@ -1,7 +1,7 @@
 import { NDKEvent ,NDKTag} from '@nostr-dev-kit/ndk';
 import { useNdk } from 'nostr-hooks';
 
-const PublishReactionToChannel = ({event}:{event: NDKEvent}) => {
+export const PublishReactionToChannel = ({event}:{event: NDKEvent}) => {
 
   const { ndk } = useNdk();
 
@@ -23,4 +23,3 @@ const PublishReactionToChannel = ({event}:{event: NDKEvent}) => {
     </>
   );
 };
-export default PublishReactionToChannel;

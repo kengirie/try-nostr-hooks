@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import { useSubscription } from 'nostr-hooks';
 import { useParams } from 'react-router-dom';
 import { Box, Typography, List, ListItem, ListItemText, Card, CardContent } from '@mui/material';
-import PublishReactionToChannel from './PublishReactionToChannel';
-import PublishChatComment from './PublishChatComment';
-import Reactions from './Reactions';
-import ChannelAbout from './ChannelAbout';
-import NumberOfReactions from './NumberOfReactions';
+import { PublishReactionToChannel } from './PublishReactionToChannel';
+import { PublishChatComment } from './PublishChatComment';
+import { Reactions } from './Reactions';
+import { ChannelAbout } from './ChannelAbout';
+import { NumberOfReactions } from './NumberOfReactions';
 
 
-const PublicChat = () => {
+export const PublicChat = () => {
   const { id } = useParams<{ id: string }>();
   const subId = `${id}-chats`;
   const subIdLikes = `${id}-likes`;
@@ -89,5 +89,3 @@ const PublicChat = () => {
     </ul>
   );
 };
-
-export default PublicChat;

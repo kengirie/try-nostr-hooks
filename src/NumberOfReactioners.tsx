@@ -5,7 +5,7 @@ import { NostrFetcher } from "nostr-fetch";
 
 
 
-const NumberOfReactioners = () => {
+export const NumberOfReactioners = () => {
       const { id } = useParams<{ id: string }>();
   const fetcher = NostrFetcher.init();
 const relayUrls = ["wss://nos.lol"];
@@ -51,4 +51,3 @@ useEffect(() => {
   );
 };
 
-export default NumberOfReactioners;

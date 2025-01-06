@@ -1,12 +1,8 @@
 import { useEffect } from 'react';
 import { useSubscription } from 'nostr-hooks';
 import { useParams } from 'react-router-dom';
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
-import PublishReactionToChannel from './PublishReactionToChannel';
-import PublishChatComment from './PublishChatComment';
-import Reactions from './Reactions';
 
-const ChannelAbout = () => {
+export const ChannelAbout = () => {
   const { id } = useParams<{ id: string }>();
   const subIdAbouts = `${id}-abouts`;
 
@@ -44,5 +40,3 @@ const ChannelAbout = () => {
     </div>
   );
 };
-
-export default ChannelAbout;
