@@ -8,18 +8,15 @@ export const ActiveUser = () => {
   const { activeUser, status } = useActiveUser();
   const { profile } = useProfile({ pubkey: activeUser?.pubkey });
 
-  if (activeUser === undefined) return <Typography>Loading... </Typography>;
+  if (activeUser === undefined) return ;
 
-  if (activeUser === null) return <Typography>Not logged in</Typography>;
+  if (activeUser === null) return ;
 
   console.log(status);
 
   return (
     <Box display="flex" alignItems="center" gap={1}>
       {profile?.image && <Avatar src={profile.image} alt="Profile" />}
-      <Typography variant="body1" color="inherit">
-        {profile?.displayName}
-      </Typography>
     </Box>
   );
 };

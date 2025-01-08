@@ -1,8 +1,8 @@
 import { Button } from '@mui/material';
-import { LoginModal } from './components/LoginModal';
-import React, { useState } from 'react';
+import { LoginModal } from './LoginModal';
+import { useState } from 'react';
 
-export const Login = () => {
+export const LoginButton = () => {
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
 
   const handleOpenLoginModal = () => {
@@ -16,7 +16,7 @@ export const Login = () => {
   return (
     <div>
       <Button variant="contained" onClick={handleOpenLoginModal}>
-        Open Login Modal
+        Login
       </Button>
       <LoginModal open={isLoginModalOpen} onClose={handleCloseLoginModal} />
     </div>
